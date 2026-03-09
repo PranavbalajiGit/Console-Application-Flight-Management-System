@@ -13,7 +13,7 @@ public class Flight {
         this.price = price;
     }
 
-    public String getId() {
+    public String getFlightNo() {
         return flightNo;
     }
 
