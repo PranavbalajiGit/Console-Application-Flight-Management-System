@@ -1,45 +1,75 @@
 package com.flightbookingsystem;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FlightBookingApp {
-    Scanner sc = new Scanner(System.in);
-    Admin admin = new Admin("Pranav");
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Admin admin = new Admin("Pranav");
 
-    List<Passenger> passenger = new ArrayList<>();
-    List<Flight> flight = new ArrayList<>();
-    List<Booking> bookings = new ArrayList<>();
+        List<Passenger> passengers = new ArrayList<>();
+        List<Flight> flights = new ArrayList<>();
+        List<Booking> bookings = new ArrayList<>();
 
-    while(true) {
-        admin.showMenu();
-        System.out.println("Enter your Choice : ");
-        int choice = sc.nextInt();
-        sc.nextLine();
+        flights.add(new Flight("AI101" , "Chennai" , "Delhi" , 3500));
+        flights.add(new Flight("EK505" , "Mumbai" , "Dubai" , 8500));
+        flights.add(new Flight("ING202" , "Pune" , "Kolkata" , 4500));
 
-        switch (choice) {
-            case 1:
-                break;
+        int passengerId = 1;
 
-            case 2:
-                break;
+        while(true) {
+            admin.showMenu();
+            System.out.println("Enter your Choice : ");
+            int choice = sc.nextInt();
+            sc.nextLine();
 
-            case 3:
-                break;
+            switch (choice) {
+                case 1:
+                    System.out.println("Registering an Passenger !! ");
 
-            case 4:
-                break;
+                    System.out.print("Enter the Name : ");
+                    String pName = sc.nextLine();
 
-            case 5:
-                break;
+                    System.out.print("Enter the Contact : ");
+                    String pContact = sc.nextLine();
 
-            case 6:
-                break;
+                    passengers.add(new Passenger(passengerId++ , pName , pContact));
+                    System.out.println("Passenger Registered !!!");
 
-            default:
-                System.out.println("Invalid Choice . . .");
+                    System.out.println();
+                    break;
+
+                case 2:
+                    System.out.println("Available Flights");
+                    for(Flight f : flights) {
+                        System.out.println("Flight Number : " + f.getFlightNo() +
+                                "\nSource : " + f.getSource() + "---> Destination : " + f.getDestination()
+                                            + "\nRs. Price : " + f.getPrice());
+                    }
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6:
+                    System.out.println("Exiting the System . . .");
+                    sc.close();
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice . . .");
+            }
         }
     }
 }
