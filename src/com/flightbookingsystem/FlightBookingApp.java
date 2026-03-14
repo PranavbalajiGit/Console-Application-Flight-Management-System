@@ -1,5 +1,6 @@
 package com.flightbookingsystem;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -51,6 +52,48 @@ public class FlightBookingApp {
                     break;
 
                 case 3:
+                    if(passengers.isEmpty()) {
+                        System.out.println("First Register Passenger");
+                        break;
+                    }
+
+                    System.out.println("Registered Passenger");
+                    for(Passenger p : passengers) {
+                        System.out.println("Passenger ID :" + p.getId() +
+                                            "\nPassenger Name :" + p.getName());
+                    }
+
+                    System.out.println("Enter the Passenger ID :");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+
+                    Passenger selectedPassenger = null;
+                    for(Passenger p : passengers) {
+                        if(id == p.getId()) {
+                            selectedPassenger = p;
+                            break;
+                        }
+                    }
+
+                    if(selectedPassenger == null) {
+                        System.out.println("Invalid Passenger ID");
+                        break;
+                    }
+
+                    System.out.println("Available Flight");
+                    for(int i = 0 ; i < flights.size() ; i++){
+                        System.out.println( (i+1) + ". " + flights.get(i).getFlightNo());
+                    }
+
+                    System.out.println("Enter the Flight ID :");
+                    int fid = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.println("Enter the Date(dd-mm--yyyy) :");
+                    String date = sc.nextLine();
+
+                    bookings.add(new Booking(selectedPassenger , flights.get(fid - 1) , date));
+                    System.out.println("Booking Confirmed !! ");
 
                     break;
 
