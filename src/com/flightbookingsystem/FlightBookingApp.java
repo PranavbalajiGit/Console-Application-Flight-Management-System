@@ -1,6 +1,5 @@
 package com.flightbookingsystem;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -98,9 +97,38 @@ public class FlightBookingApp {
                     break;
 
                 case 4:
+                    if(bookings.isEmpty()) {
+                        System.out.println("No Bookings Available");
+                        break;
+                    }
+
+                    for(Booking b : bookings) {
+                        b.display();
+                    }
+
                     break;
 
                 case 5:
+                    System.out.println("Enter the Source : ");
+                    String src = sc.nextLine().toLowerCase();
+
+                    System.out.println("Enter the Destination : ");
+                    String dest = sc.nextLine().toLowerCase();
+
+                    boolean found = false;
+                    for(Flight f : flights) {
+                        if(src.equals(f.getSource().toLowerCase()) && dest.equals(f.getDestination().toLowerCase())) {
+                            System.out.println("Flight Number : " + f.getFlightNo() +
+                                                "\nSource :" + f.getSource() + "---> Destination" + f.getDestination() +
+                                                 "\nPrice : " + f.getPrice());
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if(!found) {
+                        System.out.println("No flights Available !");
+                    }
 
                     break;
 
